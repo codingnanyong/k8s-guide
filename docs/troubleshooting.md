@@ -25,10 +25,12 @@ kubectl logs -n kube-system <coredns-pod-name>
 CoreDNS Pod가 Running이지만 Ready(0/1) 상태가 아닌 경우:
 
 **증상**:
+
 - `kubectl get pods -n kube-system`에서 CoreDNS가 `0/1 Ready`
 - 로그에 `Kubernetes API connection failure: dial tcp 10.96.0.1:443: i/o timeout` 오류
 
 **원인**:
+
 - Pod 네트워크에서 서비스 IP(10.96.0.1)로의 연결 문제
 - kube-proxy의 iptables 규칙 문제
 
@@ -57,6 +59,7 @@ kubectl get cs  # ComponentStatus 확인
 ```
 
 **참고**:
+
 - CoreDNS가 Ready가 아니어도 기본 DNS 기능은 동작할 수 있습니다
 - 클러스터의 다른 기능(API 서버, 스케줄러 등)은 정상 동작합니다
 - 시간이 지나면 자동으로 해결될 수 있습니다
@@ -66,11 +69,13 @@ kubectl get cs  # ComponentStatus 확인
 CoreDNS 로그에 `Kubernetes API connection failure: Get "https://10.96.0.1:443/version": i/o timeout`이 반복되는 경우:
 
 **증상**:
+
 - `kubectl get pods -n kube-system`에서 CoreDNS Pod가 `CrashLoopBackOff` 또는 `Running`이지만 기능 이상
 - `kubectl logs -n kube-system <coredns-pod>`에서 API 서버 연결 타임아웃 메시지 확인
 - `kubectl get all -n kube-flannel`에서 DaemonSet이 `1/1`이 아니거나 Pod 네트워크가 정상 동작하지 않음
 
 **원인**:
+
 - 호스트 기본 NIC가 `eth0`이 아닌데 Flannel이 기본값(`eth0`)으로 기동됨 (예: `ens15f0`)
 - `/etc/cni/net.d/10-flannel.conflist`와 같은 이전 Flannel CNI 설정이 남아 있어 kubelet이 잘못된 인터페이스 정보를 계속 로드함
 
@@ -102,6 +107,7 @@ kubectl get pods -n kube-system -l k8s-app=kube-dns
 ```
 
 **추가 참고**:
+
 - zsh에서 `rm -f /etc/cni/net.d/*` 형태는 globbing 오류(`no matches found`)가 발생할 수 있으므로 파일명을 명시하거나 `setopt nonomatch` 후 실행
 - Flannel 매니페스트의 `--iface` 값이 실제 NIC 이름과 일치해야 Pod 네트워크가 복구됨
 - 조치 후 CoreDNS Pod가 `1/1 Running` 상태인지 반드시 확인
@@ -234,4 +240,3 @@ sudo cp /home/user/apps/k8s/templates/crictl.yaml /etc/crictl.yaml
 # 설정 확인
 crictl ps -a  # 오류 없이 실행되어야 함
 ```
-

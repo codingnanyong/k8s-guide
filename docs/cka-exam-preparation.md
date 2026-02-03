@@ -2,7 +2,7 @@
 
 ## CKA 시험 개요
 
-CKA(Certified Kubernetes Administrator) 시험은 **kubeadm으로 구축된 클러스터**에서 진행됩니다. 
+CKA(Certified Kubernetes Administrator) 시험은 **kubeadm으로 구축된 클러스터**에서 진행됩니다.  
 따라서 kubeadm으로 클러스터를 직접 구축하고 관리하는 연습이 시험 준비에 필수적입니다.
 
 ## 시험 주제별 연습 가이드
@@ -10,6 +10,7 @@ CKA(Certified Kubernetes Administrator) 시험은 **kubeadm으로 구축된 클�
 ### 1. 클러스터 아키텍처, 설치 및 구성 (25%)
 
 **연습해야 할 내용:**
+
 - [ ] kubeadm으로 클러스터 설치 및 업그레이드
 - [ ] 클러스터 업그레이드 (kubeadm upgrade)
 - [ ] etcd 백업 및 복원
@@ -48,6 +49,7 @@ sudo ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-backup.db \
 ### 2. 워크로드 및 스케줄링 (15%)
 
 **연습해야 할 내용:**
+
 - [ ] Pod, Deployment, StatefulSet, DaemonSet 생성 및 관리
 - [ ] 스케줄링 (nodeSelector, affinity, taints/tolerations)
 - [ ] Resource Limits 및 Requests 설정
@@ -55,6 +57,7 @@ sudo ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-backup.db \
 ### 3. 서비스 및 네트워킹 (20%)
 
 **연습해야 할 내용:**
+
 - [ ] Service (ClusterIP, NodePort, LoadBalancer) 생성
 - [ ] Ingress 리소스 구성
 - [ ] CoreDNS 문제 해결
@@ -77,6 +80,7 @@ kubectl get endpoints <service-name>
 ### 4. 스토리지 (10%)
 
 **연습해야 할 내용:**
+
 - [ ] PersistentVolume, PersistentVolumeClaim 생성
 - [ ] StorageClass 구성
 - [ ] 볼륨 마운트
@@ -84,6 +88,7 @@ kubectl get endpoints <service-name>
 ### 5. 트러블슈팅 (30%) ⭐ 가장 중요!
 
 **연습해야 할 내용:**
+
 - [ ] Pod가 시작되지 않는 경우 진단
 - [ ] 노드가 NotReady 상태일 때 해결
 - [ ] 네트워크 문제 해결
@@ -113,12 +118,14 @@ sudo systemctl restart kubelet
 ## CKA 시험 준비 체크리스트
 
 ### 클러스터 구축
+
 - [ ] kubeadm으로 마스터 노드 초기화 성공
 - [ ] 워커 노드 최소 2개 이상 추가
 - [ ] CNI 플러그인 설치 완료
 - [ ] 모든 노드가 Ready 상태
 
 ### 필수 명령어 숙지
+
 - [ ] `kubectl get/describe/logs/exec` 명령어 자유자재로 사용
 - [ ] `kubectl edit`로 리소스 수정
 - [ ] `kubectl apply/delete`로 리소스 생성/삭제
@@ -126,6 +133,7 @@ sudo systemctl restart kubelet
 - [ ] `kubeadm token` 명령어 사용
 
 ### 문제 해결 능력
+
 - [ ] Pod가 Pending 상태일 때 원인 파악 및 해결
 - [ ] Pod가 CrashLoopBackOff 상태일 때 로그 확인 및 수정
 - [ ] 노드가 NotReady 상태일 때 진단 및 복구
@@ -133,6 +141,7 @@ sudo systemctl restart kubelet
 - [ ] 네트워크 문제 해결
 
 ### 빠른 작업 능력
+
 - [ ] YAML 파일 빠르게 작성 (vim/vi 편집기 사용)
 - [ ] kubectl 명령어 자동완성 설정
 - [ ] 명령어 단축키(alias) 활용
@@ -197,8 +206,8 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
 ## 추가 학습 리소스
 
-1. **공식 문서**: https://kubernetes.io/docs/
-2. **kubeadm 문서**: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
-3. **CKA 시험 가이드**: https://www.cncf.io/certification/cka/
+1. **공식 문서**: [https://kubernetes.io/docs/]
+2. **kubeadm 문서**: [https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/]
+3. **CKA 시험 가이드**: [https://www.cncf.io/certification/cka/]
 4. **killer.sh CKA 시뮬레이터**: 실제 시험 환경과 유사한 연습 문제
 
